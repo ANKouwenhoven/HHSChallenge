@@ -1,6 +1,6 @@
 #### The Hague University of Applied Sciences project:
 ## [challenge](https://thechallenge-hboict.nl/?page_id=59): Greenites
-(the website the link direct to is written in Dutch)
+(the website the link directs to is written in Dutch)
 
 This project aims to give better insights to the fertility of the soil
 by measuring properties like temperature, moisture, luminosity and mineral concentrations.
