@@ -1,38 +1,37 @@
-#### university of applied sciences project:
+#### The Hague University of Applied Sciences project:
 ## [challenge](https://thechallenge-hboict.nl/?page_id=59): Greenites
-(the website the link direct to is written in dutch)
+(the website the link direct to is written in Dutch)
 
-This project aims to give better insights to how the state of the soil is
-by showing the soil moister, minerals
-and other things that there already sensor on the marked is.
+This project aims to give better insights to the fertility of the soil
+by measuring properties like temperature, moisture, luminosity and mineral concentrations.
 
-This repo contains the gui
+By logging the values of these properties, it will develop a model over time which provides the product owner with valuable information on keeping their soil healthy and fertile.
 
 ### Aims of this project for the students:
-give a taste of what study direction students could go.
+Give a taste of what study direction students could go.
 
- - network and system engineer
+ - Network and System engineer
    
-   working on embeded systems look how computer networks works
+   working on embedded systems look how computer networks works
 
 
- - information security management
+ - Information Security Management
    
    learning how to attack and defend an system
    opsec
 
 
- - innovative development
+ - Innovative Development
    
    a startup with training wheels
 
 
- - business & data management
+ - Business & Data management
    
    how to tell to management how to bully developers,
    how to design databases
 
- - software engineering
+ - Software Engineering
 
 
 ## Install from source
