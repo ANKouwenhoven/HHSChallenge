@@ -10,29 +10,29 @@ By logging the values of these properties, it will develop a model over time whi
 ### Aims of this project for the students:
 Give a taste of what study direction students could go.
 
- - Network and System engineer
+ - Network and System Engineering
    
-   working on embedded systems look how computer networks works
+   Working on embedded systems and connecting hardware and software
 
 
  - Information Security Management
    
-   learning how to attack and defend an system
-   opsec
+   Learning how to attack and defend a system
 
 
  - Innovative Development
    
-   a startup with training wheels
+   The basics of running a startup
 
 
  - Business & Data management
    
-   how to tell to management how to bully developers,
-   how to design databases
+   Design and maintain databases and create business models
+
 
  - Software Engineering
 
+   Designing and developing software
 
 ## Install from source
 // todo
