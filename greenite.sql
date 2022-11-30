@@ -1,5 +1,7 @@
 CREATE SCHEMA Greenite;
 
+USE Greenite;
+
 CREATE TABLE Gebruiker (
 gebruikercode char(10) not null,  
 voornaam varchar(75) not null,  
@@ -19,6 +21,16 @@ foreign key (gebruikercode) references Gebruiker (gebruikercode)
 on delete no action
 on update cascade);
 
+CREATE TABLE Sensor (
+sensorID char(20) not null, 
+sensortype varchar(75) not null, 
+locatie varchar(250), 
+netwerkID char(10) not null,
+primary key (sensorID),
+foreign key (netwerkID) references Netwerk (netwerkID)
+on delete cascade
+on update cascade);
+
 CREATE TABLE Meetwaarde (
 sensorID char(20) not null,
 tijdstip_meetwaarde TIMESTAMP not null,
@@ -28,16 +40,6 @@ waarde DOUBLE not null,
 primary key (sensorID, tijdstip_meetwaarde),
 foreign key (sensorID) references Sensor (sensorID)
 on delete no action
-on update cascade);
-
-CREATE TABLE Sensor (
-sensorID char(20) not null, 
-sensortype varchar(75) not null, 
-locatie varchar(250), 
-netwerkID char(10) not null,
-primary key (sensorID),
-foreign key (netwerkID) references Netwerk (netwerkID)
-on delete cascade
 on update cascade);
 
 CREATE TABLE Melding (
