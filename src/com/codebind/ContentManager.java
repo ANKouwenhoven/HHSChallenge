@@ -24,6 +24,7 @@ public class ContentManager {
         this.frame = getBasicFrame();
         this.frame.setVisible(true);
         this.frame.setSize(1600,960);
+        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
 
