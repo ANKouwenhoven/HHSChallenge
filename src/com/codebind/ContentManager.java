@@ -52,10 +52,9 @@ public class ContentManager {
     public void setPage(PageInterface page) {
         this.body.removeAll();
         this.body.add(page.getPanel());
+        this.body.revalidate();
+
         this.page = page;
         page.setContentManager(this);
-
-        this.frame.repaint();
-
     }
 }
