@@ -13,7 +13,7 @@ public class ContentManager {
     JLabel titleLabel;
     JFrame frame;
     PageInterface page;
-    JPanel body = new JPanel();
+    JPanel body = new JPanel(new BorderLayout());
 
 
 
