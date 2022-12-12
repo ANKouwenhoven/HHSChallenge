@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 /**
  * dit is de body code wat in ContentManager stond
+ * written by merlijn
  */
 public class idk implements PageInterface, ActionListener {
 
@@ -71,6 +72,10 @@ public class idk implements PageInterface, ActionListener {
     }
 
     public void registerActionEvent() {
+
+    }
+
+    public void afterSetup() {
 
     }
 
