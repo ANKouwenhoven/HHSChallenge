@@ -7,4 +7,6 @@ public interface PageInterface extends EventListener {
 
     JPanel getPanel();
     void setContentManager(ContentManager contentManager);
+
+    void afterSetup();
 }

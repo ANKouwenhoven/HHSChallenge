@@ -45,8 +45,8 @@ public class login implements PageInterface, ActionListener {
         return this.panel;
     }
 
-    public void registerActionEvent() {
-
+    public void afterSetup() {
+        this.contentManager.setTitle("login");
     }
 
     public void setContentManager(ContentManager contentManager) {

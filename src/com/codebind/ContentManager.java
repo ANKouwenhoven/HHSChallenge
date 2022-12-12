@@ -2,11 +2,6 @@ package com.codebind;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import static java.awt.Color.blue;
-import static java.awt.SystemColor.text;
 
 public class ContentManager {
 
@@ -57,5 +52,12 @@ public class ContentManager {
 
         this.page = page;
         page.setContentManager(this);
+
+        page.afterSetup();
+    }
+
+    public void setTitle(String newTitle) {
+        this.titleLabel.setText(newTitle);
+        this.frame.setTitle("Greenite: " + newTitle);
     }
 }
