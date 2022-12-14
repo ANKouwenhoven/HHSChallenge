@@ -13,6 +13,8 @@ public class ContentManager {
 
     JLabel titleLabel;
     JFrame frame;
+    PageInterface page;
+    JPanel body = new JPanel(new BorderLayout());
 
 
 
@@ -102,4 +104,20 @@ public class ContentManager {
         return panel;
     }
     // {{ body logic
+
+    public void setPage(PageInterface page) {
+        this.body.removeAll();
+        this.body.add(page.getPanel());
+        this.body.revalidate();
+
+        this.page = page;
+        page.setContentManager(this);
+
+        page.afterSetup();
+    }
+
+    public void setTitle(String newTitle) {
+        this.titleLabel.setText(newTitle);
+        this.frame.setTitle("Greenite: " + newTitle);
+    }
 }
