@@ -34,7 +34,7 @@ public class ContentManager {
         pane.setLayout(new BorderLayout());
 
         pane.add(this.getHeader(),"North");
-        pane.add(this.getBody(),"Center");
+        pane.add(this.body,"Center");
         return frame;
     }
 

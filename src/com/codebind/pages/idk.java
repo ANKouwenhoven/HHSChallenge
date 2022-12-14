@@ -21,50 +21,56 @@ public class idk implements PageInterface, ActionListener {
     ContentManager contentManager;
 
     public idk() {
-        JPanel panel = new JPanel();
         //panel.setBackground(new Color(0xDAF7A6));
-        panel.setName("MAIN_BODY");
-        this.titleLabel = new JLabel("Text");
-        panel.add(this.titleLabel);
+        this.panel.setName("MAIN_BODY");
+        this.titleLabel = new JLabel();
+        this.panel.add(this.titleLabel);
 
 
-        JButton mockups = new JButton();
+        JButton menu = new JButton("menu");
         //panel.setBackground(new Color(0xABBEC3A));
-        panel.setName("MOCKUP_KNOP");
-        mockups.setPreferredSize(new Dimension(100, 60));
-        this.titleLabel = new JLabel("Mockups");
-        panel.add(this.titleLabel);
-        panel.add(mockups);
+        this.panel.setName("menu_dropdown");
+        menu.setPreferredSize(new Dimension(100, 60));
+        this.titleLabel = new JLabel();
+        this.panel.add(this.titleLabel);
+        this.panel.add(menu);
 
 
-
-        JButton graph_over_time = new JButton();
+        JButton graph_over_time = new JButton("Graph over time");
         //panel.setBackground(new Color(0XABBEC3B));
-        panel.setName("GRAPH_OVER_TIME");
-        graph_over_time.setPreferredSize(new Dimension(100,60));
-        this.titleLabel = new JLabel("GraphOverTime");
-        panel.add(this.titleLabel);
-        panel.add(graph_over_time);
+        this.panel.setName("GRAPH_OVER_TIME");
+        graph_over_time.setPreferredSize(new Dimension(200,60));
+        this.titleLabel = new JLabel();
+        this.panel.add(this.titleLabel);
+        this.panel.add(graph_over_time);
 
 
-        JButton login = new JButton();
-        panel.setBackground(new Color(0X783FFFE8));
-        panel.setName("LOGIN");
-        login.setPreferredSize(new Dimension(60,60));
-        this.titleLabel = new JLabel("Login");
-        panel.add(this.titleLabel);
-        panel.add(login);
+
+        JButton login = new JButton("login");
+        this.panel.setBackground(new Color(0X783FFFE8));
+        this.panel.setName("LOGIN");
+        login.setPreferredSize(new Dimension(180,60));
+        this.titleLabel = new JLabel();
+        this.panel.add(this.titleLabel);
+        this.panel.add(login);
+
 
 
         JLabel aboutUs = new JLabel();
-        panel.setName("ABOUT_US");
+        this.panel.setName("ABOUT_US");
         aboutUs.setPreferredSize(new Dimension(1600,400));
-        this.titleLabel = new JLabel("About us: test.test.test.test.test.test.test.test.test."); //positie aanpassen
-        panel.add(this.titleLabel);
-        panel.add(aboutUs);
+        this.titleLabel = new JLabel();
+        this.panel.add(this.titleLabel);
+        this.panel.add(aboutUs);
 
 
-        this.panel.add(panel);
+        JLabel about_us = new JLabel();
+        this.titleLabel = new JLabel("Over ons: About us: test.test.test.test.test.test.test.test.test.");
+        this.panel.add(this.titleLabel);
+        this.panel.add(about_us);
+
+
+
     }
 
     public JPanel getPanel() {
@@ -77,6 +83,7 @@ public class idk implements PageInterface, ActionListener {
 
     public void afterSetup() {
 
+        this.contentManager.setTitle("new title");
     }
 
     public void setContentManager(ContentManager contentManager) {
