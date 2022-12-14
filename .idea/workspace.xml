@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7df0c21e-b8fa-459d-835b-297cdca48f27" name="Changes" comment="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen&#10;&#10;&#10;Cleanup  / positioning">
+      <change beforePath="$PROJECT_DIR$/src/com/codebind/ContentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/codebind/ContentManager.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="normale body verwisseld voor getBody,&#10;- panel met text &quot;text&quot; toegevoegd&#10;- knop van mockups toegevoegd" />
+        <option name="rewordedMessage" value="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen&#10;&#10;&#10;normale body verwisseld voor getBody,&#10;- panel met text &quot;text&quot; toegevoegd&#10;- knop van mockups toegevoegd" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="89d418dbc3db4e3b520374a2adaebcdcff97b200" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HM1Abobj19V0m15rrsWtWR6PGg" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gebruiker/Desktop/Github/HHSChallenge&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.codebind.Main" />
+      <module name="Greenites" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.codebind.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7df0c21e-b8fa-459d-835b-297cdca48f27" name="Changes" comment="" />
+      <created>1668079996822</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668079996822</updated>
+    </task>
+    <task id="LOCAL-00001" summary="normale body verwisseld voor getBody,&#10;- panel met text &quot;text&quot; toegevoegd&#10;- knop van mockups toegevoegd">
+      <created>1669289313699</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669289313699</updated>
+    </task>
+    <task id="LOCAL-00002" summary="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen">
+      <created>1669546748203</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669546748203</updated>
+    </task>
+    <task id="LOCAL-00003" summary="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen&#10;&#10;&#10;Cleanup  / positioning">
+      <created>1671011847693</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671011847693</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="normale body verwisseld voor getBody,&#10;- panel met text &quot;text&quot; toegevoegd&#10;- knop van mockups toegevoegd" />
+    <MESSAGE value="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen" />
+    <MESSAGE value="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen&#10;&#10;&#10;Cleanup  / positioning" />
+    <option name="LAST_COMMIT_MESSAGE" value="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen&#10;&#10;&#10;Cleanup  / positioning" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
