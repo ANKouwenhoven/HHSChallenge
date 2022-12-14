@@ -1,5 +1,7 @@
 package com.codebind;
 
+import com.codebind.databaseConnection.Sensor;
+
 import javax.swing.*;
 import java.awt.*;
 
