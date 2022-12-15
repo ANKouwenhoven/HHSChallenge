@@ -1,9 +1,12 @@
 package com.codebind;
 
+import com.codebind.databaseConnection.DataBaseConnection;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import static java.awt.Color.blue;
 import static java.awt.Color.white;
@@ -17,7 +20,7 @@ public class ContentManager implements ActionListener {
     PageInterface page;
     JPanel body = new JPanel(new BorderLayout());
 
-
+    DataBaseConnection dataBaseConnection;
 
     // ??? pageHistory;
 
@@ -26,6 +29,13 @@ public class ContentManager implements ActionListener {
         this.frame = getBasicFrame();
         this.frame.setVisible(true);
         this.frame.setSize(1600,960);
+        try {
+            this.dataBaseConnection = new DataBaseConnection();
+        } catch (SQLException e) {
+            System.out.println("failed creating databaseConnection object.");
+            e.printStackTrace();
+            System.out.println("continue without databaseConnection");
+        }
     }
 
 
