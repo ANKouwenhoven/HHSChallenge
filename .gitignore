@@ -9,3 +9,5 @@
 
 #remove compiler junk
 /out
+
+.idea/workspace.xml
