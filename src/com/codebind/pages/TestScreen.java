@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  * dit is de body code wat in ContentManager stond
  * written by merlijn
  */
-public class idk implements PageInterface, ActionListener {
+public class TestScreen implements PageInterface, ActionListener {
 
     JPanel panel = new JPanel();
 
@@ -20,7 +20,7 @@ public class idk implements PageInterface, ActionListener {
 
     ContentManager contentManager;
 
-    public idk() {
+    public TestScreen() {
         //panel.setBackground(new Color(0xDAF7A6));
         this.panel.setName("MAIN_BODY");
         this.titleLabel = new JLabel();
