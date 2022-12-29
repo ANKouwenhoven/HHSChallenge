@@ -10,7 +10,13 @@ public class DataBaseConnection {
         String connectionUrl = "jdbc:mysql://localhost/greenite";
         connection = DriverManager.getConnection(connectionUrl, "root", "test");
 
+
     }
+
+    public PreparedStatement getPreparedStatement(String sql) throws SQLException{
+        return this.connection.prepareStatement(sql);
+    }
+
 
     public String GetGebruikerCode(String emailAdres, String passWord) {
         ResultSet resultSet = null;
