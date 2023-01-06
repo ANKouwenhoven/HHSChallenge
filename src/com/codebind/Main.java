@@ -1,15 +1,12 @@
 package com.codebind;
 
-import com.codebind.pages.login;
-
-import javax.swing.*;
-import java.awt.*;
+import com.codebind.pages.Login;
 
 public class Main {
 
     public static void main(String[] Args) {
         ContentManager contentManager = new ContentManager();
-        contentManager.setPage(new login());
+        contentManager.setPage(new Login());
     }
 
 

@@ -2,13 +2,16 @@ package com.codebind.pages;
 
 import com.codebind.ContentManager;
 import com.codebind.PageInterface;
+import com.codebind.databaseConnection.DataBaseConnection;
+import com.codebind.databaseConnection.NetworkOverview;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
-public class login implements PageInterface, ActionListener {
+public class Login implements PageInterface, ActionListener {
 
     JLabel emailLabel = new JLabel("E-mail");
     JTextField email = new JTextField();
@@ -19,7 +22,7 @@ public class login implements PageInterface, ActionListener {
 
     ContentManager contentManager;
 
-    public login() {
+    public Login() {
         emailLabel.setBounds(125,60,250,40);
         email.setBounds(125,100,250,40);
 
@@ -53,13 +56,30 @@ public class login implements PageInterface, ActionListener {
         this.contentManager = contentManager;
     }
 
-    public int handleEvent(String event, Object data) {
-        return 0;
-    }
-
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        idk idk = new idk();
-        contentManager.setPage(new idk());
+        DataBaseConnection database =  this.contentManager.getDataBaseConnection();
+        if (database == null) {
+            System.out.println("database connection is not set.");
+            return;
+        }
+        String email = this.email.getText();
+        String password = String.valueOf(this.password.getPassword());
+
+        if (database.login(email, password)) {
+            contentManager.setPage(new TestScreen());
+
+            //try {
+                //contentManager.setPage(new NetworksOverview(
+                        //NetworkOverview.getAllNetworkOverviewFromOwner(database,"user1")
+                //));
+            //} catch (SQLException e) {
+                //throw new RuntimeException(e);
+            //}
+
+        } else {
+            System.out.println("wrong email or password");
+        }
+
     }
 }
