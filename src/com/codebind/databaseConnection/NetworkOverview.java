@@ -150,9 +150,9 @@ public class NetworkOverview {
                         "LEFT JOIN Sensor ON Netwerk.netwerkID = Sensor.netwerkID " +
 
                         "LEFT JOIN (" +
-                        "SELECT waarde as nieuwe_waarde, eenheid, tijdstip_meetwaarde, sensorID " +
-                        "FROM Meetwaarde " +
-                        "ORDER BY tijdstip_meetwaarde DESC " +
+                            "SELECT waarde as nieuwe_waarde, eenheid, tijdstip_meetwaarde, sensorID " +
+                            "FROM Meetwaarde " +
+                            "ORDER BY tijdstip_meetwaarde DESC " +
                         "LIMIT 1) lw " +
                         "ON Sensor.sensorID = lw.sensorID " +
 
@@ -228,7 +228,6 @@ public class NetworkOverview {
      * debug code
      */
     public String toString() {
-
         String sensorString = "";
         for (sensorInformation s :
                 sensorsInformation) {

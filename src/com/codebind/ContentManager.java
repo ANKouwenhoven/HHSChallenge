@@ -24,6 +24,7 @@ public class ContentManager implements ActionListener {
         this.frame = getBasicFrame();
         this.frame.setVisible(true);
         this.frame.setSize(1600,960);
+
         try {
             this.dataBaseConnection = new DataBaseConnection();
         } catch (SQLException e) {
