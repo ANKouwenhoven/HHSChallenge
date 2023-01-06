@@ -84,4 +84,8 @@ public class ContentManager implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println( e.paramString());
     }
+
+    public DataBaseConnection getDataBaseConnection() {
+        return dataBaseConnection;
+    }
 }
