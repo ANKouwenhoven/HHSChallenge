@@ -67,15 +67,15 @@ public class Login implements PageInterface, ActionListener {
         String password = String.valueOf(this.password.getPassword());
 
         if (database.login(email, password)) {
-            contentManager.setPage(new TestScreen());
+            //contentManager.setPage(new TestScreen());
 
-            //try {
-                //contentManager.setPage(new NetworksOverview(
-                        //NetworkOverview.getAllNetworkOverviewFromOwner(database,"user1")
-                //));
-            //} catch (SQLException e) {
-                //throw new RuntimeException(e);
-            //}
+            try {
+                contentManager.setPage(new NetworksOverview(
+                        NetworkOverview.getAllNetworkOverviewFromOwner(database,"user1")
+                ));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
         } else {
             System.out.println("wrong email or password");
