@@ -20,7 +20,7 @@ public class Melding {
             tijdstipMelding = melding.tijdstipMelding;
             tijdstipMeetwaarde = melding.tijdstipMeetwaarde;
             sensorID = melding.sensorID;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

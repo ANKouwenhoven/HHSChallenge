@@ -37,7 +37,7 @@ public class Network {
         try {
             DataBaseConnection connectionMetDataBase = new DataBaseConnection();
             networkIds = connectionMetDataBase.GetNetworkIDs(gebruikerCode, aantal);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -51,7 +51,7 @@ public class Network {
             networkadress = network.networkadress;
             locationNetwork = network.locationNetwork;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

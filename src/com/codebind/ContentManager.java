@@ -27,7 +27,7 @@ public class ContentManager implements ActionListener {
 
         try {
             this.dataBaseConnection = new DataBaseConnection();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("failed creating databaseConnection object.");
             e.printStackTrace();
             System.out.println("continue without databaseConnection");

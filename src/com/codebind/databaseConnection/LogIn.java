@@ -55,7 +55,7 @@ public class LogIn extends JFrame implements ActionListener {
             DataBaseConnection connectionMetDataBase = new DataBaseConnection();
             rightPassord =  connectionMetDataBase.login(gebruikersEmail, gebruikersPassword);
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 

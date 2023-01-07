@@ -19,7 +19,7 @@ public class Meetwaarde {
             grootheid = meetwaarde.grootheid;
             eenheid = meetwaarde.eenheid;
             waarde = meetwaarde.waarde;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

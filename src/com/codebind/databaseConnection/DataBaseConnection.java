@@ -6,11 +6,26 @@ import java.sql.*;
 public class DataBaseConnection {
     Connection connection;
 
-    public DataBaseConnection() throws SQLException {
+    public DataBaseConnection() throws Exception {
+        connection = createConnection();
+    }
+
+    public Connection createConnection() throws Exception {
         String connectionUrl = "jdbc:mysql://localhost/greenite";
-        connection = DriverManager.getConnection(connectionUrl, "root", "test");
 
+        try {
+            return DriverManager.getConnection(connectionUrl, "root", "test");
+        } catch (SQLException e) {
+            System.out.println("failed to connect using the password test");
+        }
 
+        try {
+            return DriverManager.getConnection(connectionUrl, "root", "");
+        } catch (SQLException e) {
+            System.out.println("failed to connect using no password");
+        }
+
+        throw new Exception("failed to make an connection");
     }
 
     public PreparedStatement getPreparedStatement(String sql) throws SQLException{

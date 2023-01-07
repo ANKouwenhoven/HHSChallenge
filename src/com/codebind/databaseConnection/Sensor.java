@@ -16,7 +16,7 @@ public class Sensor {
         try {
             DataBaseConnection connectionMetDataBase = new DataBaseConnection();
             sensorIds = connectionMetDataBase.GetSensorIDs(netwerkID, aantal);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -29,7 +29,7 @@ public class Sensor {
             sensorType = sensor.sensorType;
             sensorLocation = sensor.sensorLocation;
             netwerkId = sensor.netwerkId;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

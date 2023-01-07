@@ -16,7 +16,7 @@ public class Gebruiker {
             DataBaseConnection connectionMetDataBase = new DataBaseConnection();
             gebruikerCode = connectionMetDataBase.GetGebruikerCode(emailAdres, passWord);
             Gebruiker gebruiker = new Gebruiker(gebruikerCode);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -31,7 +31,7 @@ public class Gebruiker {
             telefoonnummer = gebuiker.telefoonnummer;
             email_adres = gebuiker.email_adres;
             password = gebuiker.password;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
