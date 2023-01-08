@@ -33,7 +33,6 @@ public class NetworkOverviewWidget implements PageInterface {
 
         pane.add(contentPane);
         panel.add(pane, BorderLayout.NORTH);
-
     }
 
     public void fillSensorData(JPanel networkPanel, NetworkOverview network) {
@@ -41,7 +40,6 @@ public class NetworkOverviewWidget implements PageInterface {
              network.sensorsInformation) {
 
             JPanel sensorPanel = new JPanel(new GridLayout(-1,1,2,-1));
-
             sensorPanel.setName("sensor: "+sensorInfo.sensorID);
 
             JLabel type = new JLabel(String.format(

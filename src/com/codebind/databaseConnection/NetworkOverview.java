@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class NetworkOverview {
+
     public String networkID;
     public String networkLocation;
     public String ownerID;
@@ -11,6 +12,7 @@ public class NetworkOverview {
 
 
     public static class sensorInformation {
+
         public String sensorID;
         public String sensorType;
         public String location;
@@ -19,13 +21,14 @@ public class NetworkOverview {
         public Timestamp timestampMeasurement;
 
         public sensorInformation() {}
+
         public sensorInformation(ResultSet resultSet) throws SQLException {
-            this.sensorID = resultSet.getString("sensorID");
-            this.location = resultSet.getString("locatie");
-            this.sensorType = resultSet.getString("sensortype");
-            this.unitOfMeasurement = resultSet.getString("eenheid");
+            this.sensorID             = resultSet.getString("sensorID");
+            this.location             = resultSet.getString("locatie");
+            this.sensorType           = resultSet.getString("sensortype");
+            this.unitOfMeasurement    = resultSet.getString("eenheid");
             this.timestampMeasurement = resultSet.getTimestamp("tijdstip_meetwaarde");
-            this.newestValue = resultSet.getDouble("nieuwe_waarde");
+            this.newestValue          = resultSet.getDouble("nieuwe_waarde");
         }
     }
 
@@ -42,9 +45,9 @@ public class NetworkOverview {
                         "LEFT JOIN Sensor ON Netwerk.netwerkID = Sensor.netwerkID " +
 
                         "LEFT JOIN (" +
-                        "SELECT waarde as nieuwe_waarde, eenheid, tijdstip_meetwaarde, sensorID " +
-                        "FROM Meetwaarde " +
-                        "ORDER BY tijdstip_meetwaarde DESC " +
+                            "SELECT waarde as nieuwe_waarde, eenheid, tijdstip_meetwaarde, sensorID " +
+                            "FROM Meetwaarde " +
+                            "ORDER BY tijdstip_meetwaarde DESC " +
                         "LIMIT 1) lw " +
                         "ON Sensor.sensorID = lw.sensorID " +
 
@@ -66,16 +69,14 @@ public class NetworkOverview {
                         "LEFT JOIN Sensor ON Netwerk.netwerkID = Sensor.netwerkID " +
 
                         "LEFT JOIN (" +
-                        "SELECT waarde as nieuwe_waarde, eenheid, tijdstip_meetwaarde, sensorID " +
-                        "FROM Meetwaarde " +
-                        "ORDER BY tijdstip_meetwaarde DESC " +
+                            "SELECT waarde as nieuwe_waarde, eenheid, tijdstip_meetwaarde, sensorID " +
+                            "FROM Meetwaarde " +
+                            "ORDER BY tijdstip_meetwaarde DESC " +
                         "LIMIT 1) lw " +
                         "ON Sensor.sensorID = lw.sensorID " +
 
                         "ORDER BY Netwerk.netwerkID, Sensor.sensorID;");
-
         ResultSet resultSet = preparedStatement.executeQuery();
-
 
         // setup
         boolean hasFirstRow = resultSet.next();
@@ -91,6 +92,7 @@ public class NetworkOverview {
         currentNetwork.ownerID =resultSet.getString("gebruikercode");
 
         ArrayList<sensorInformation> sensorsInfo = new ArrayList<>();
+
         if (resultSet.getString("sensorID") != null) {
             sensorsInfo.add(new sensorInformation(resultSet));
         }
@@ -110,9 +112,9 @@ public class NetworkOverview {
                 currentNetwork = new NetworkOverview();
                 sensorsInfo.clear();
 
-                currentNetwork.networkID = resultSet.getString("netwerkID");
+                currentNetwork.networkID       = resultSet.getString("netwerkID");
                 currentNetwork.networkLocation = resultSet.getString("locatie_adres");
-                currentNetwork.ownerID = resultSet.getString("gebruikercode");
+                currentNetwork.ownerID         = resultSet.getString("gebruikercode");
             }
 
             if (resultSet.getString("sensorID") != null) {
