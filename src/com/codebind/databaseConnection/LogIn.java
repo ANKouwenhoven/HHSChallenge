@@ -50,16 +50,16 @@ public class LogIn extends JFrame implements ActionListener {
     public boolean comparePasswords() {
         String gebruikersEmail = email.getText();
         String gebruikersPassword = String.valueOf(password.getPassword());
-        Boolean rightPassord;
+        String gebnruikercode;
         try {
             DataBaseConnection connectionMetDataBase = new DataBaseConnection();
-            rightPassord =  connectionMetDataBase.login(gebruikersEmail, gebruikersPassword);
+            gebnruikercode =  connectionMetDataBase.login(gebruikersEmail, gebruikersPassword);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        if (rightPassord) {
+        if (gebnruikercode != null) {
             return true;
         }
         else {

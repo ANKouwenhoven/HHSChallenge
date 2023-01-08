@@ -216,22 +216,33 @@ public class DataBaseConnection {
     }
 
 
-    public boolean login(String username, String pwd) {
-        String rightPassord = "";
+    /**
+     * @return String|null <br>
+     * <pre>
+     * correct combination   = UserID (gebruikercode)<br>
+     * incorrect combination = null <br>
+     * </pre>
+     */
+    public String login(String email, String pwd) {
         try {
-            ResultSet resultSet = null;
-            Statement statement = null;
-            statement = connection.createStatement();
-            String selectPassword = "Select wachtwoord from gebruiker " +
-                    "Where email_adres = '" + username + "'";
-            resultSet = statement.executeQuery(selectPassword);
-            resultSet.next();
-            rightPassord = resultSet.getString(1);
+            String query = "Select wachtwoord, gebruikercode from gebruiker " +
+                    "Where email_adres = ?";
+
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next() ) {
+                String rightPassword = resultSet.getString("wachtwoord");
+                if (pwd.equals(rightPassword)) {
+                    return resultSet.getString("gebruikercode");
+                }
+            }
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return pwd.equals(rightPassord);
+        return null;
     }
 
 }
