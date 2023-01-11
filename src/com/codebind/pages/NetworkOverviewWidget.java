@@ -71,7 +71,7 @@ public class NetworkOverviewWidget implements PageInterface {
                 JLabel timestampLabel = new JLabel(String.format(
                         "recorded on: %s",
                         sensorInfo.timestampMeasurement.toLocalDateTime().format(
-                                DateTimeFormatter.ofPattern("HH:mm dd-MM-YYYY")
+                                DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy")
                         )
                 ));
                 timestampLabel.setBorder(new CompoundBorder(timestampLabel.getBorder(), margin));
