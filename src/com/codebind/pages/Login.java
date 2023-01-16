@@ -71,14 +71,13 @@ public class Login implements PageInterface, ActionListener {
         if (userID != null) {
             contentManager.userID = userID;
             try {
-                contentManager.setPage(new NetworksOverview(
-                        NetworkOverview.getAllNetworkOverviewFromOwner(database, userID)
-                ));
+                contentManager.setPage(new NetworksOverview(database, userID));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
         } else {
+            contentManager.setPage(new menu());
             System.out.println("wrong email or password");
         }
 
