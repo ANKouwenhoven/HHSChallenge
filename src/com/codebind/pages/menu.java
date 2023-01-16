@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class menu implements PageInterface {
+public class menu implements PageInterface, ActionListener {
     JPanel panel = new JPanel();
     ContentManager contentManager;
     @Override
@@ -23,13 +23,13 @@ public class menu implements PageInterface {
     @Override
     public void afterSetup() {
 
-            JFrame frame = new JFrame("Menu");
-            frame.setVisible(true);
-            frame.setSize(200,80);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //JFrame frame = new JFrame("Menu");
+            //frame.setVisible(true);
+            //frame.setSize(200,80);
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             JMenuBar menubar = new JMenuBar();
-            frame.setJMenuBar(menubar);
+            panel.add(menubar);
 
             JMenu file = new JMenu("File");
             menubar.add(file);
@@ -40,19 +40,27 @@ public class menu implements PageInterface {
             JMenu help = new JMenu("Help");
             menubar.add(help);
             JMenuItem about = new JMenu("About");
+            JMenuItem aa = new JMenuItem("aa");
+            aa.addActionListener(this);
+            about.add(aa);
             help.add(about);
 
 
-            class exitaction implements ActionListener {
-                public void actionPerformed (ActionEvent e){
-                    System.exit(0);
-
-
-                }
-            }
-            exit.addActionListener(new exitaction());
+            exit.addActionListener(this);
 
 
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "Exit":
+                System.exit(9);
+                break;
+            case "aa":
+                //contentManager.setPage(); //page waarnaar die moet gaan (moet pageInterface implementer)
+                break;
+        }
     }
 }
