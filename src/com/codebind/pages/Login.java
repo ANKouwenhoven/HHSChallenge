@@ -9,9 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 
-public class Login implements PageInterface, ActionListener {
+public class Login implements PageInterface, ActionListener, KeyListener {
 
     JLabel emailLabel = new JLabel("E-mail");
     JTextField email = new JTextField();
@@ -36,12 +38,14 @@ public class Login implements PageInterface, ActionListener {
         //panel.setTitle("Log in");
         panel.setLayout(null);
         panel.setBackground(new Color(90,150,230));
+        password.addKeyListener(this);
 
         panel.add(logInButton);
         panel.add(email);
         panel.add(password);
         panel.add(emailLabel);
         panel.add(passwordLabel);
+
     }
 
     public JPanel getPanel() {
@@ -82,4 +86,15 @@ public class Login implements PageInterface, ActionListener {
         }
 
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int enter = 10;
+        if (e.getKeyCode() == enter) {
+            actionPerformed(new ActionEvent(this, 1, ""));
+        }
+
+    }
+
+    @Override public void keyTyped(KeyEvent e) {} @Override public void keyPressed(KeyEvent e) {}
 }
