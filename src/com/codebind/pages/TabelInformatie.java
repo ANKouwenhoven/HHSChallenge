@@ -9,6 +9,9 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.module.ResolutionException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TabelInformatie implements PageInterface, ActionListener {
@@ -27,20 +30,20 @@ public class TabelInformatie implements PageInterface, ActionListener {
         dataBaseConnection = db;
         storedID = userID;
 
-
-        createGui();
     }
 
     public TabelInformatie() {createGui();}
     public void createGui() {
-        String[] columnNames = {"Meetdata",
+        String[] columnNames = {
+                "Meetdata",
                 "dd-mm-yyyy.begin + tijd.begin",
                 "dd-mm-yyyy.einde + tijd.einde"};
+
 
         Object[][] data = {
                 {"Meetdata: ", "dd-mm-yyyy.begin + tijd.begin", "dd-mm-yyyy.einde + tijd.einde"},
                 {"","",""},
-                {"Gebruiker: ", "", "gebruiker.naam"},
+                {"Gebruiker: ", "", },
                 {"Aantal sensoren: ", "", "aantal sensoren"},
                 {"Temperatuurstatus: ", "", "gem.temperatuur"},
                 {"Vochtstatus: ", "", "status.vocht.meest recente meting"},
@@ -60,7 +63,27 @@ public class TabelInformatie implements PageInterface, ActionListener {
     }
 
     @Override
-    public void afterSetup() { contentManager.setTitle("tabel informatie");
+    public void afterSetup() {
+        try {
+
+            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
+                "SELECT count(*)\n" +
+                        "From Netwerk n\n" +
+                        "join sensor s on  n.netwerkID = s.netwerkID\n" +
+                        "Where gebruikerscode = ?; \n"
+        );
+        preparedStatement.setString(1, contentManager.userID);
+        ResultSet resultSet= null;
+            resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            resultSet.getInt("ss");
+        }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        contentManager.setTitle("tabel informatie");
+        createGui();
     }
 
     @Override
