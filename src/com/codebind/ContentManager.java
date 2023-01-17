@@ -61,9 +61,11 @@ public class ContentManager implements ActionListener {
         JMenu menu = new JMenu("Menu");
         menubar.add(menu);
         JMenuItem informatie = new JMenu("Informatie");
-        JMenuItem network_overview = new JMenu("Network Overview");
+        JMenuItem network_overview = new JMenuItem("Network Overview");
         JMenuItem tabel_informatie = new JMenuItem("Tabel Informatie");
         informatie.addActionListener(this);
+        network_overview.addActionListener(this);
+        tabel_informatie.addActionListener(this);
 
         menu.add(informatie);
         informatie.add(network_overview);
@@ -96,6 +98,7 @@ public class ContentManager implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         System.out.println( e.paramString());
         switch (e.getActionCommand()) {
             case "Exit":
@@ -110,15 +113,10 @@ public class ContentManager implements ActionListener {
                     throw new RuntimeException(ex);
                 }
                 break;
-            case "TabelInformatie":
+            case "Tabel Informatie":
                 try {
-                    setPage(new TabelInformatie() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
+                    setPage(new TabelInformatie(dataBaseConnection, userID));
 
-                        }
-                    });
-                    System.out.println("tabel");
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -2,13 +2,16 @@ package com.codebind.pages;
 
 import com.codebind.ContentManager;
 import com.codebind.PageInterface;
+import com.codebind.databaseConnection.DataBaseConnection;
 
 import javax.swing.*;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public abstract class TabelInformatie implements PageInterface, ActionListener {
+public class TabelInformatie implements PageInterface, ActionListener {
 
     JPanel panel = new JPanel(new BorderLayout());
 
@@ -16,19 +19,34 @@ public abstract class TabelInformatie implements PageInterface, ActionListener {
 
     ContentManager contentManager;
 
-    public TabelInformatie() throws SQLException {
+    DataBaseConnection dataBaseConnection;
 
+    String storedID;
+
+    public TabelInformatie(DataBaseConnection db, String userID) throws SQLException {
+        dataBaseConnection = db;
+        storedID = userID;
+
+
+        createGui();
     }
 
+    public TabelInformatie() {createGui();}
+    public void createGui() {
+        String[] columnNames = {"Meetdata",
+                "dd-mm-yyyy.begin + tijd.begin",
+                "dd-mm-yyyy.einde + tijd.einde"};
 
-    public void createGui(TabelInformatie[] informatie) {
-        panel.add(
-                new JLabel(String.format("%d informatie(s)", informatie.length)),
-                BorderLayout.NORTH
-        );
-
-
-        panel.add(tabelPanel, BorderLayout.CENTER);
+        Object[][] data = {
+                {"Meetdata: ", "dd-mm-yyyy.begin + tijd.begin", "dd-mm-yyyy.einde + tijd.einde"},
+                {"","",""},
+                {"Gebruiker: ", "", "gebruiker.naam"},
+                {"Aantal sensoren: ", "", "aantal sensoren"},
+                {"Temperatuurstatus: ", "", "gem.temperatuur"},
+                {"Vochtstatus: ", "", "status.vocht.meest recente meting"},
+        };
+        JTable table = new JTable(data, columnNames);
+        panel.add(table);
     }
 
     @Override
@@ -43,5 +61,10 @@ public abstract class TabelInformatie implements PageInterface, ActionListener {
 
     @Override
     public void afterSetup() { contentManager.setTitle("tabel informatie");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
