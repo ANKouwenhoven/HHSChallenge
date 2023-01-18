@@ -1,7 +1,7 @@
 package com.codebind;
-
+import com.codebind.PageInterface;
 import com.codebind.databaseConnection.DataBaseConnection;
-
+import com.codebind.*;
 import javax.swing.*;
 import javax.tools.JavaFileManager;
 import java.awt.*;
@@ -20,9 +20,7 @@ public class ContentManager implements ActionListener {
 
     private DataBaseConnection dataBaseConnection;
 
-    // ??? pageHistory;
 
-    // {{ init
     public ContentManager() {
         this.frame = getBasicFrame();
         this.frame.setVisible(true);
@@ -60,14 +58,14 @@ public class ContentManager implements ActionListener {
         file.add(exit);
         file.setPreferredSize(new Dimension(100, 60));
 
-
         JMenu menu = new JMenu("Menu");
         menubar.add(menu);
         JMenuItem informatie = new JMenu("Informatie");
-        JMenuItem network_overview = new JMenu("Network Overview");
+        JMenuItem network_overview = new JMenuItem("Network Overview");
         JMenuItem tabel_informatie = new JMenuItem("Tabel Informatie");
         informatie.addActionListener(this);
-        //tabel_informatie.addActionListener(this);
+        network_overview.addActionListener(this);
+        tabel_informatie.addActionListener(this);
 
         menu.add(informatie);
         informatie.add(network_overview);
@@ -75,31 +73,10 @@ public class ContentManager implements ActionListener {
 
         network_overview.addActionListener(this);
 
-        //menu.add(network_overview);
         menu.setPreferredSize(new Dimension(100, 60));
         exit.addActionListener(this);
 
         return  panel;
-
-
-        /*JPanel panel = new JPanel();
-        panel.setBackground(new Color(0x00FFCA));
-        panel.setName("MAIN_HEADER");
-
-        JMenu menu = new JMenu("menu");
-        menu.addActionListener(this);
-        //panel.setBackground(new Color(0xABBEC3A));           
-        panel.setName("menu_dropdown");                        
-        menu.setPreferredSize(new Dimension(100, 60));         
-        this.titleLabel = new JLabel();                        
-        panel.add(this.titleLabel);                            
-        panel.add(menu);                                       
-
-        this.titleLabel = new JLabel("Title");
-        panel.add(this.titleLabel);
-        return panel;
-        */
-
     }
 
     // {{ body logic
@@ -116,12 +93,12 @@ public class ContentManager implements ActionListener {
     }
 
     public void setTitle(String newTitle) {
-        this.titleLabel.setText(newTitle);
         this.frame.setTitle("Greenite: " + newTitle);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         System.out.println( e.paramString());
         switch (e.getActionCommand()) {
             case "Exit":
@@ -132,6 +109,14 @@ public class ContentManager implements ActionListener {
                 try {
                     setPage(new NetworksOverview(dataBaseConnection, userID));
                     System.out.println("asdasd");
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
+            case "Tabel Informatie":
+                try {
+                    setPage(new TabelInformatie(dataBaseConnection, userID));
+
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
