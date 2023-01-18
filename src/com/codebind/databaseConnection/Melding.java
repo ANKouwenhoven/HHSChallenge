@@ -14,12 +14,12 @@ public class Melding {
     Melding(Meetwaarde meetwaarde) {
         try {
             DataBaseConnection connectionMetDataBase = new DataBaseConnection();
-            Melding melding = connectionMetDataBase.GetMeldingInfo(meetwaarde);
-            meldingcode = melding.meldingcode;
-            bericht = melding.bericht;
-            tijdstipMelding = melding.tijdstipMelding;
-            tijdstipMeetwaarde = melding.tijdstipMeetwaarde;
-            sensorID = melding.sensorID;
+            //Melding melding = connectionMetDataBase.GetMeldingInfo(meetwaarde);
+            //meldingcode = melding.meldingcode;
+            //bericht = melding.bericht;
+            //tijdstipMelding = melding.tijdstipMelding;
+            //tijdstipMeetwaarde = melding.tijdstipMeetwaarde;
+            //sensorID = melding.sensorID;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
