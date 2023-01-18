@@ -87,7 +87,7 @@ public class DataBaseConnection {
                 Meetwaarde meetwaarde = new Meetwaarde();
                 meetwaarde.grootheid = resultSet.getString(3);
                 meetwaarde.eenheid = resultSet.getString(4);
-                meetwaarde.waarde = resultSet.getString(5);
+                meetwaarde.waarde = resultSet.getDouble(5);
                 return meetwaarde;
             }
         } catch (SQLException e) {
@@ -97,7 +97,7 @@ public class DataBaseConnection {
         return null;
     }
 
-    public Melding GetMeldingInfo(Meetwaarde meetwaarde) {
+    /* public Melding GetMeldingInfo(Meetwaarde meetwaarde) {
         ResultSet resultSet = null;
         String sensorId = meetwaarde.sensorId;
         String tijdstipMeetwaarde = meetwaarde.tijdstipMeetwaarde;
@@ -122,7 +122,7 @@ public class DataBaseConnection {
             throw new RuntimeException(e);
         }
         return null;
-    }
+    }*/
 
     public String[] GetNetworkIDs(String gebruikercode, int aantal)  {
         ResultSet resultSet = null;
@@ -220,10 +220,10 @@ public class DataBaseConnection {
      * @return String|null <br>
      * <pre>
      * correct combination   = UserID (gebruikercode)<br>
-     * incorrect combination = null <br>
+     * incorrect combination = -1 <br>
      * </pre>
      */
-    public String login(String email, String pwd) {
+    public int login(String email, String pwd) {
         try {
             String query = "Select wachtwoord, gebruikercode from gebruiker " +
                     "Where email_adres = ?";
@@ -235,14 +235,14 @@ public class DataBaseConnection {
             while (resultSet.next() ) {
                 String rightPassword = resultSet.getString("wachtwoord");
                 if (pwd.equals(rightPassword)) {
-                    return resultSet.getString("gebruikercode");
+                    return resultSet.getInt("gebruikercode");
                 }
             }
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return -1;
     }
 
 }

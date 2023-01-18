@@ -15,7 +15,7 @@ public class ContentManager implements ActionListener {
     private JLabel titleLabel;
     private JFrame frame;
     PageInterface page;
-    public String userID;
+    public int userID;
     private JPanel body = new JPanel(new BorderLayout());
 
     private DataBaseConnection dataBaseConnection;

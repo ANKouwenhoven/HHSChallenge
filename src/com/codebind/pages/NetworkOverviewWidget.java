@@ -2,8 +2,9 @@ package com.codebind.pages;
 
 import com.codebind.ContentManager;
 import com.codebind.PageInterface;
+import com.codebind.databaseConnection.Meetwaarde;
 import com.codebind.databaseConnection.NetworkOverview;
-import com.codebind.databaseConnection.NetworkOverviewRefreshStatement;
+import com.codebind.databaseConnection.SensorData;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -11,8 +12,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class NetworkOverviewWidget implements PageInterface {
 
@@ -20,10 +22,10 @@ public class NetworkOverviewWidget implements PageInterface {
 
     JPanel panel = new JPanel(new BorderLayout());
     JPanel contentPane = new JPanel(new GridLayout(-1, 1, 0, 8));
-
-    HashMap<String, JPanel> sensorHashMap = new HashMap<>();
-
     ContentManager contentManager;
+
+    ArrayList<JPanel> sensorArray = new ArrayList<>();
+
 
     public NetworkOverviewWidget(NetworkOverview networkOverview) {
         panel.setMaximumSize(new Dimension(80, 80));
@@ -44,7 +46,7 @@ public class NetworkOverviewWidget implements PageInterface {
              network.sensorsInformation) {
 
             JPanel sensorPanel = new JPanel(new GridLayout(-1,1,2,-1));
-            sensorPanel.setName("sensor: "+sensorInfo.sensorID);
+            sensorPanel.setName(String.valueOf(sensorInfo.sensorID));
 
             JLabel type = new JLabel(String.format(
                     "type: %s",
@@ -85,7 +87,7 @@ public class NetworkOverviewWidget implements PageInterface {
 
             sensorPanel.setBorder(new TitledBorder(new LineBorder(Color.black), sensorInfo.location));
 
-            sensorHashMap.put(sensorInfo.sensorID, sensorPanel);
+            sensorArray.add(sensorPanel);
             networkPanel.add(sensorPanel);
         }
 
@@ -104,44 +106,52 @@ public class NetworkOverviewWidget implements PageInterface {
     @Override
     public void afterSetup() {
 
-
     }
 
-    public void update(NetworkOverviewRefreshStatement data) {
-        if (data.eenheid == null) {
-            return;
-        }
+    public void update() {
+        //sorry for all the nesting
+        for (JPanel sensorPanel :
+                sensorArray) {
 
-        JPanel panel = sensorHashMap.get(data.sensorID);
+            int sensorID = Integer.parseInt( sensorPanel.getName() );
 
-        if (panel == null) {
-            return;
-        }
+            try {
+                System.out.print("checking " + sensorID );
+                Meetwaarde newData = new Meetwaarde(contentManager.getDataBaseConnection(), sensorID);
 
-        for (Component unknownComponent :
-                panel.getComponents()) {
+                if (newData.grootheid == null) {
+                    System.out.println(" no data");
+                    continue;
+                }
+                System.out.println(" found");
 
-            String name = unknownComponent.getName() != null?
-                    unknownComponent.getName():
-                    "";
 
-            switch (name) {
+                for (Component unknownComponent :
+                        sensorPanel.getComponents()) {
 
-                case "measurementLabel":
-                    JLabel measurementLabel = (JLabel) unknownComponent;
-                    measurementLabel.setText(String.format("%.2f", data.nieuwe_waarde));
-                    break;
+                    String name = unknownComponent.getName() != null?
+                            unknownComponent.getName():
+                            "";
 
-                case "timeLabel":
-                    JLabel timeLabel = (JLabel) unknownComponent;
-                    timeLabel.setText(data.tijdstip_meetwaarde.toLocalDateTime().format(
-                            DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy")
-                            )
-                    );
-                    break;
+                    switch (name) {
+                        case "measurementLabel":
+                            JLabel measurementLabel = (JLabel) unknownComponent;
+                            measurementLabel.setText(String.format("%.2f", newData.waarde));
+                            break;
+
+                        case "timeLabel":
+                            JLabel timeLabel = (JLabel) unknownComponent;
+                            timeLabel.setText(newData.tijdstipMeetwaarde.toLocalDateTime().format(
+                                            DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy")
+                                    )
+                            );
+                            break;
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        }
 
-        //contentPane.getComponents();
+        }
     }
 }

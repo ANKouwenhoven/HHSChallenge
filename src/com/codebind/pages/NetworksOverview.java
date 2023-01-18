@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class NetworksOverview implements PageInterface, ActionListener {
 
@@ -20,12 +19,10 @@ public class NetworksOverview implements PageInterface, ActionListener {
     JPanel networksPanel = new JPanel(new GridLayout(-1,2, 20, 20));
     ContentManager contentManager;
     DataBaseConnection dataBaseConnection;
-    String storedID;
-    HashMap<String, NetworkOverviewWidget> networkOverviewWidgetHashMap = new HashMap<>();
+    ArrayList<NetworkOverviewWidget> networkOverviewArray = new ArrayList<>();
 
-    public NetworksOverview(DataBaseConnection db, String userID) throws SQLException {
+    public NetworksOverview(DataBaseConnection db, int userID) throws SQLException {
         dataBaseConnection = db;
-        storedID = userID;
 
         NetworkOverview[] networksOverview = NetworkOverview.getAllNetworkOverviewFromOwner(db, userID);
         Timer timer = new Timer(1500, this);
@@ -48,7 +45,7 @@ public class NetworksOverview implements PageInterface, ActionListener {
         for (NetworkOverview o :
                 overviews) {
             NetworkOverviewWidget networkOverview = new NetworkOverviewWidget(o);
-            networkOverviewWidgetHashMap.put(o.networkID, networkOverview);
+            networkOverviewArray.add(networkOverview);
             networksPanel.add(networkOverview.getPanel());
 
         }
@@ -63,6 +60,11 @@ public class NetworksOverview implements PageInterface, ActionListener {
     @Override
     public void setContentManager(ContentManager contentManager) {
         this.contentManager = contentManager;
+
+        for (NetworkOverviewWidget widget :
+                networkOverviewArray) {
+            widget.setContentManager(contentManager);
+        }
     }
 
     @Override
@@ -79,15 +81,9 @@ public class NetworksOverview implements PageInterface, ActionListener {
     }
 
     private void redrawUser() {
-        try {
-            ArrayList<NetworkOverviewRefreshStatement> nd = NetworkOverviewRefreshStatement.getFromUserID(dataBaseConnection,storedID);
-
-            for (NetworkOverviewRefreshStatement data:
-                 nd) {
-                networkOverviewWidgetHashMap.get(data.netwerkID).update(data);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        for (NetworkOverviewWidget networkOverview:
+                networkOverviewArray) {
+            networkOverview.update();
         }
     }
 }

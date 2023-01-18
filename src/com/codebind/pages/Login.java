@@ -70,9 +70,9 @@ public class Login implements PageInterface, ActionListener, KeyListener {
         String email = this.email.getText();
         String password = String.valueOf(this.password.getPassword());
 
-        String userID = database.login(email, password);
+        int userID = database.login(email, password);
 
-        if (userID != null) {
+        if (userID != -1) {
             contentManager.userID = userID;
             try {
                 contentManager.setPage(new NetworksOverview(database, userID));
@@ -81,7 +81,7 @@ public class Login implements PageInterface, ActionListener, KeyListener {
             }
 
         } else {
-            contentManager.setPage(new menu());
+            //contentManager.setPage(new menu());
             System.out.println("wrong email or password");
         }
 

@@ -50,7 +50,7 @@ public class LogIn extends JFrame implements ActionListener {
     public boolean comparePasswords() {
         String gebruikersEmail = email.getText();
         String gebruikersPassword = String.valueOf(password.getPassword());
-        String gebnruikercode;
+        int gebnruikercode;
         try {
             DataBaseConnection connectionMetDataBase = new DataBaseConnection();
             gebnruikercode =  connectionMetDataBase.login(gebruikersEmail, gebruikersPassword);
@@ -59,11 +59,10 @@ public class LogIn extends JFrame implements ActionListener {
             throw new RuntimeException(e);
         }
 
-        if (gebnruikercode != null) {
+        if (gebnruikercode != -1) {
             return true;
         }
-        else {
-            return false;
-        }
+
+        return false;
     }
 }

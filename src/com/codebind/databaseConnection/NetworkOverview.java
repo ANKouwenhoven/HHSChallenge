@@ -141,7 +141,7 @@ public class NetworkOverview {
         return networkOverviews;
     }
 
-    public static NetworkOverview[] getAllNetworkOverviewFromOwner (DataBaseConnection db, String ownerID) throws SQLException {
+    public static NetworkOverview[] getAllNetworkOverviewFromOwner (DataBaseConnection db, int ownerID) throws SQLException {
 
         PreparedStatement preparedStatement = db.getPreparedStatement(
                 "SELECT Netwerk.netwerkID, Netwerk.locatie_adres, Netwerk.gebruikercode, " +
@@ -161,7 +161,7 @@ public class NetworkOverview {
                         "WHERE Netwerk.gebruikercode = ? "+
                         "ORDER BY Netwerk.netwerkID, Sensor.sensorID;");
 
-        preparedStatement.setString(1, ownerID);
+        preparedStatement.setInt(1, ownerID);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
