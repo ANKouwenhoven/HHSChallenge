@@ -69,9 +69,11 @@ public class TabelInformatie implements PageInterface, ActionListener {
         try {
 
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                    "SELECT waarde\n" +
-                            "From Meetwaarde n\n" +
-                            "Where gebruikercode = " + userID
+                    "SELECT waarde \n" +
+                            "From meetwaarde n\n" +
+                            "Where waarde = ?" +
+                            "ORDER BY tijdstip_meetwaarde " +
+                            "LIMIT 1;"
             );
             preparedStatement.setString(1, String.valueOf(contentManager.userID));
             ResultSet resultSet;
@@ -94,12 +96,13 @@ public class TabelInformatie implements PageInterface, ActionListener {
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
                     "SELECT waarde\n" +
                             "From Meetwaarde n\n" +
-                            "Where gebruikercode = " + userID
+                            "ORDER BY tijdstip_meetwaarde " +
+                            "LIMIT 1;"
             );
             preparedStatement.setString(1, String.valueOf(contentManager.userID));
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
-
+            resultSet.next();
             String output = resultSet.getString(1);
             System.out.println(output);
 
@@ -115,9 +118,9 @@ public class TabelInformatie implements PageInterface, ActionListener {
         try {
 
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                    "SELECT count(*)\n" +
+                    "SELECT count(sensorID)\n" +
                             "From Sensor n\n" +
-                            "Where gebruikercode = " + userID
+                            "Where sensorId = ? "
             );
             preparedStatement.setString(1, String.valueOf(contentManager.userID));
             ResultSet resultSet;
@@ -139,8 +142,8 @@ public class TabelInformatie implements PageInterface, ActionListener {
         try {
 
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                    "SELECT naam\n" +
-                            "From Gebruiker\n" +
+                    "SELECT voornaam + achternaam \n" +
+                            "From Gebruiker \n" +
                     "Where gebruikerCode = " + userID
             );
 
