@@ -71,11 +71,11 @@ public class TabelInformatie implements PageInterface, ActionListener {
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
                     "SELECT waarde \n" +
                             "From meetwaarde n\n" +
-                            "Where waarde = ?" +
+                            "Where sensorID = ?" +
                             "ORDER BY tijdstip_meetwaarde " +
                             "LIMIT 1;"
             );
-            preparedStatement.setString(1, String.valueOf(contentManager.userID));
+            preparedStatement.setString(6, String.valueOf(contentManager.userID));
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
 
@@ -99,7 +99,7 @@ public class TabelInformatie implements PageInterface, ActionListener {
                             "ORDER BY tijdstip_meetwaarde " +
                             "LIMIT 1;"
             );
-            preparedStatement.setString(1, String.valueOf(contentManager.userID));
+           //preparedStatement.setString(1, String.valueOf(contentManager.userID));
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -125,7 +125,7 @@ public class TabelInformatie implements PageInterface, ActionListener {
             preparedStatement.setString(1, String.valueOf(contentManager.userID));
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
-
+            resultSet.next();
             String output = resultSet.getString(1);
             System.out.println(output);
 
@@ -149,7 +149,7 @@ public class TabelInformatie implements PageInterface, ActionListener {
 
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
-
+            resultSet.next();
             String output = resultSet.getString(1);
             System.out.println(output);
 

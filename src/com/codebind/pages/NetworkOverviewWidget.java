@@ -115,11 +115,11 @@ public class NetworkOverviewWidget implements PageInterface {
             int sensorID = Integer.parseInt( sensorPanel.getName() );
 
             try {
-                System.out.print("checking " + sensorID );
+                //System.out.print("checking " + sensorID );
                 Meetwaarde newData = new Meetwaarde(contentManager.getDataBaseConnection(), sensorID);
 
                 if (newData.grootheid == null) {
-                    System.out.println(" no data");
+                    //System.out.println(" no data");
                     continue;
                 }
                 System.out.println(" found");
