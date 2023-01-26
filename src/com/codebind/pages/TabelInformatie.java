@@ -17,8 +17,6 @@ public class TabelInformatie implements PageInterface, ActionListener {
 
     JPanel panel = new JPanel(new BorderLayout());
 
-    JPanel tabelPanel = new JPanel(new GridLayout(-1,2, 20, 20));
-
     ContentManager contentManager;
 
     DataBaseConnection dataBaseConnection;
@@ -34,9 +32,8 @@ public class TabelInformatie implements PageInterface, ActionListener {
 
     public void createGui() {
 
-
-        String/*object*/[][] data = {
-                {"Meetdata: ", "dd-mm-yyyy.begin + tijd.begin", "dd-mm-yyyy.einde + tijd.einde"},
+        String[][] data = {
+                {"Meetdata: ", "Datum/tijdBegin", "Datum/tijdEinde"},
                 {"","",""},
                 {"Gebruiker: ", "", "gebruiker naam"},
                 {"Aantal sensoren: ", "", "aantal sensoren"},
@@ -46,9 +43,18 @@ public class TabelInformatie implements PageInterface, ActionListener {
 
         String[] columnNames = {
                 "Meetdata",
-                "dd-mm-yyyy.begin + tijd.begin",
-                "dd-mm-yyyy.einde + tijd.einde"
+                "Datum/tijdBegin",
+                "Datum/tijdEinde"
         };
+
+        String username = SetUsername();
+        String sensoren = SetAantalSensoren();
+        String temperatuur = SetTemperatuur();
+        String vocht = SetVochtGehalte();
+        data[2][2] = username;
+        data[3][2] = sensoren;
+        data[4][2] = temperatuur;
+        data[5][2] = vocht;
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table = new JTable(model);
@@ -56,87 +62,102 @@ public class TabelInformatie implements PageInterface, ActionListener {
         panel.add(table);
         System.out.println("test");
 
+    }
 
-        SetUsername(
-
-                "naam gebruiker", 2, 2);
-        //gebruiker
+    private String SetVochtGehalte() {
+        int userID = contentManager.userID;
         try {
 
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                    "SELECT email_adres\n" +
-                            "From Gebruiker n\n"
+                    "SELECT waarde\n" +
+                            "From Meetwaarde n\n" +
+                            "Where gebruikercode = " + userID
             );
             preparedStatement.setString(1, String.valueOf(contentManager.userID));
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
+
+            String output = resultSet.getString(1);
+            System.out.println(output);
+
+            return output;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
+    }
 
+    private String SetTemperatuur() {
+        int userID = contentManager.userID;
+        try {
 
-        SetAantalSensoren("sens aantal", 3, 2);
-        //aantal sensoren "SELECT count(*)"
+            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
+                    "SELECT waarde\n" +
+                            "From Meetwaarde n\n" +
+                            "Where gebruikercode = " + userID
+            );
+            preparedStatement.setString(1, String.valueOf(contentManager.userID));
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+
+            String output = resultSet.getString(1);
+            System.out.println(output);
+
+            return output;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String SetAantalSensoren() {
+        int userID = contentManager.userID;
         try {
 
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
                     "SELECT count(*)\n" +
-                            "From Netwerk n\n" +
-                            "join sensor s on  n.netwerkID = s.netwerkID\n" +
-                            "Where gebruikercode = ?; \n"
+                            "From Sensor n\n" +
+                            "Where gebruikercode = " + userID
             );
             preparedStatement.setString(1, String.valueOf(contentManager.userID));
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
+
+            String output = resultSet.getString(1);
+            System.out.println(output);
+
+            return output;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String SetUsername() {
+        int userID = contentManager.userID;
+
+        try {
+
+            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
+                    "SELECT naam\n" +
+                            "From Gebruiker\n" +
+                    "Where gebruikerCode = " + userID
+            );
+
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+
+            String output = resultSet.getString(1);
+            System.out.println(output);
+
+            return output;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
-        SetTemperatuurGemiddelde("temp gemiddelde", 4, 2);
-        //gemiddelde temperatuur SELECT gem(array[])"
-       /* try {
-
-            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                    //hier gemiddelde temperatuur over x tijd zetten
-            );
-            preparedStatement.setString(1, String.valueOf(contentManager.userID));
-            ResultSet resultSet;
-            resultSet = preparedStatement.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } */
-
-
-        SetVochtGehalte("vochtgehalte %", 5, 2);
-        //vochtgehalte in %
-      /* try {
-
-            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                    //hier het gemiddelde van de 3 meest recente vochtwaarden weergeven
-            );
-            preparedStatement.setString(1, String.valueOf(contentManager.userID));
-            ResultSet resultSet;
-            resultSet = preparedStatement.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } */
-
-        System.out.println("test2");
+        return null;
     }
 
-    private void SetVochtGehalte(String s, int i, int i1) {
-    }
-    //method SetVochtGehalte (anders deed ie t niet) 11:51 1/25/23
-    private void SetTemperatuurGemiddelde(String temp_gemiddelde, int i, int i1) {
-    }
-    //method SetTemperatuurGemiddelde (anders deed ie t niet) 11:47 1/25/23
-    private void SetAantalSensoren(String sens_aantal, int i, int i1) {
-    }
-    //method SetAantalSensoren (anders deed ie t niet) 11:39 1/25/23
-    private void SetUsername(String naam_gebruiker, int i, int i1) {
-    }
-    //method setUsername (anders deed ie t niet) 11:25 1/25/23
     @Override
     public JPanel getPanel() {
         return panel;
@@ -145,40 +166,20 @@ public class TabelInformatie implements PageInterface, ActionListener {
     @Override
     public void setContentManager(ContentManager contentManager) {
         this.contentManager = contentManager;
-        System.out.println("bb");
+        System.out.println("setcontentmanager");
 
     }
 
     @Override
     public void afterSetup() {
-        System.out.println("hi");
+        System.out.println("aftersetup");
 
-        try {
 
-            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                    "SELECT count(*)\n" +
-                            "From Netwerk n\n" +
-                            "join sensor s on  n.netwerkID = s.netwerkID\n" +
-                            "Where gebruikercode = ?; \n"
-        );
-        preparedStatement.setString(1, String.valueOf(contentManager.userID));
-        ResultSet resultSet;
-           resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-            resultSet.getInt("ss");
-        }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         contentManager.setTitle("tabel informatie");
         createGui();
     }
 
-    public void SetData(Object obj, int row_index, int columnNames_index){
-        table.getModel().setValueAt(obj,row_index,columnNames_index);
-        System.out.println("Value is added");
-    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

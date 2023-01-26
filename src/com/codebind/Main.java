@@ -4,8 +4,10 @@ import com.codebind.pages.Login;
 
 public class Main {
 
+    public static ContentManager contentManager;
+
     public static void main(String[] Args) {
-        ContentManager contentManager = new ContentManager();
+        contentManager = new ContentManager();
         contentManager.setPage(new Login());
     }
 
