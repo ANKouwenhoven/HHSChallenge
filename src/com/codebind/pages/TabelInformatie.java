@@ -24,9 +24,9 @@ public class TabelInformatie implements PageInterface, ActionListener {
     DataBaseConnection dataBaseConnection;
     JTable table;
 
-    String storedID;
+    int storedID;
 
-    public TabelInformatie(DataBaseConnection db, String userID) throws SQLException {
+    public TabelInformatie(DataBaseConnection db, int userID) throws SQLException {
         dataBaseConnection = db;
         storedID = userID;
 
@@ -57,22 +57,86 @@ public class TabelInformatie implements PageInterface, ActionListener {
         System.out.println("test");
 
 
-        SetData("naam gebruiker", 2, 2);
+        SetUsername(
+
+                "naam gebruiker", 2, 2);
         //gebruiker
+        try {
 
-        SetData("sens aantal", 3, 2);
+            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
+                    "SELECT email_adres\n" +
+                            "From Gebruiker n\n"
+            );
+            preparedStatement.setString(1, String.valueOf(contentManager.userID));
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        SetAantalSensoren("sens aantal", 3, 2);
         //aantal sensoren "SELECT count(*)"
+        try {
 
-        SetData("temp gemiddelde", 4, 2);
+            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
+                    "SELECT count(*)\n" +
+                            "From Netwerk n\n" +
+                            "join sensor s on  n.netwerkID = s.netwerkID\n" +
+                            "Where gebruikercode = ?; \n"
+            );
+            preparedStatement.setString(1, String.valueOf(contentManager.userID));
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        SetTemperatuurGemiddelde("temp gemiddelde", 4, 2);
         //gemiddelde temperatuur SELECT gem(array[])"
+       /* try {
 
-        SetData("vochtgehalte %", 5, 2);
+            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
+                    //hier gemiddelde temperatuur over x tijd zetten
+            );
+            preparedStatement.setString(1, String.valueOf(contentManager.userID));
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } */
+
+
+        SetVochtGehalte("vochtgehalte %", 5, 2);
         //vochtgehalte in %
+      /* try {
 
+            PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
+                    //hier het gemiddelde van de 3 meest recente vochtwaarden weergeven
+            );
+            preparedStatement.setString(1, String.valueOf(contentManager.userID));
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } */
 
         System.out.println("test2");
     }
 
+    private void SetVochtGehalte(String s, int i, int i1) {
+    }
+    //method SetVochtGehalte (anders deed ie t niet) 11:51 1/25/23
+    private void SetTemperatuurGemiddelde(String temp_gemiddelde, int i, int i1) {
+    }
+    //method SetTemperatuurGemiddelde (anders deed ie t niet) 11:47 1/25/23
+    private void SetAantalSensoren(String sens_aantal, int i, int i1) {
+    }
+    //method SetAantalSensoren (anders deed ie t niet) 11:39 1/25/23
+    private void SetUsername(String naam_gebruiker, int i, int i1) {
+    }
+    //method setUsername (anders deed ie t niet) 11:25 1/25/23
     @Override
     public JPanel getPanel() {
         return panel;
@@ -92,13 +156,13 @@ public class TabelInformatie implements PageInterface, ActionListener {
         try {
 
             PreparedStatement preparedStatement = contentManager.getDataBaseConnection().getPreparedStatement(
-                "SELECT count(*)\n" +
-                        "From Netwerk n\n" +
-                        "join sensor s on  n.netwerkID = s.netwerkID\n" +
-                        "Where gebruikercode = ?; \n"
+                    "SELECT count(*)\n" +
+                            "From Netwerk n\n" +
+                            "join sensor s on  n.netwerkID = s.netwerkID\n" +
+                            "Where gebruikercode = ?; \n"
         );
-        preparedStatement.setString(1, contentManager.userID);
-        ResultSet resultSet= null;
+        preparedStatement.setString(1, String.valueOf(contentManager.userID));
+        ResultSet resultSet;
            resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {

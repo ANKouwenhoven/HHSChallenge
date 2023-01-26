@@ -4,7 +4,6 @@ import com.codebind.ContentManager;
 import com.codebind.PageInterface;
 import com.codebind.databaseConnection.Meetwaarde;
 import com.codebind.databaseConnection.NetworkOverview;
-import com.codebind.databaseConnection.SensorData;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;

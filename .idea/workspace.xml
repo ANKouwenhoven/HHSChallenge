@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7df0c21e-b8fa-459d-835b-297cdca48f27" name="Changes" comment="changes tabelinformatie&#10;(nog werkend maken)">
+    <list default="true" id="7df0c21e-b8fa-459d-835b-297cdca48f27" name="Changes" comment="TabelInformatie: tabel SetData update TabelInformatie">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/codebind/pages/NetworkOverviewWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/codebind/pages/NetworkOverviewWidget.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/codebind/pages/TabelInformatie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/codebind/pages/TabelInformatie.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +117,8 @@
     <MESSAGE value="normale body verwisseld voor getBody,&#10;- panel met text &quot;text&quot; toegevoegd&#10;- knop van mockups toegevoegd" />
     <MESSAGE value="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen" />
     <MESSAGE value="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen&#10;&#10;&#10;Cleanup  / positioning" />
-    <option name="LAST_COMMIT_MESSAGE" value="normale body verwisseld voor getBody,&#10;- regel 64 tot 87 toegevoegd met:&#10;- graph_over_time knop&#10;- login knop&#10;- aboutUs label //voor text en afbeeldingen waarin wij ons bedrijf voorstellen&#10;&#10;&#10;Cleanup  / positioning" />
+    <MESSAGE value="TabelInformatie: tabel SetData update TabelInformatie" />
+    <option name="LAST_COMMIT_MESSAGE" value="TabelInformatie: tabel SetData update TabelInformatie" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
